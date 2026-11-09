@@ -1,0 +1,6 @@
+[submodule "spektra-core/third_party/darktable-spektrafilm"]
+	path = spektra-core/third_party/darktable-spektrafilm
+	url = https://github.com/darktable-org/darktable-spektrafilm.git
+[submodule "upstream/spektrafilm-ofx"]
+	path = upstream/spektrafilm-ofx
+	url = https://github.com/chaert-s/spektrafilm-ofx.git

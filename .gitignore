@@ -1,0 +1,23 @@
+# repo-local ignores
+backup/
+*.o
+*.ppm
+build/
+.gradle/
+sf-win-src.tar.gz
+gmon.out
+
+# python bytecode from the tools/ scripts — regenerated on every build, since
+# the build imports them (tools/sync_pack.py imports the bandpass merge)
+__pycache__/
+*.pyc
+
+# reference-only upstreams cloned by tools/fetch-sources.sh (see SOURCES.md)
+upstream/spektrafilm/
+upstream/spektrafilm-rs/
+upstream/vkdt/
+
+# editor
+*.swp
+.idea/
+.vscode/

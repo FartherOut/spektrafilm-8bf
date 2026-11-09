@@ -1,0 +1,13 @@
+; plugin.def — export exactly the entry point Photoshop/Affinity look up via
+; the PiPL's '8664' (Win64 code) property. Using a .def guarantees the exact
+; undecorated export name regardless of compiler/calling-convention quirks.
+;
+; No LIBRARY statement, on purpose. With one, the linker takes that name as the
+; image's internal name and writes it into the .exp, so `LIBRARY spektrafilm`
+; produced /OUT:spektrafilm.dll against an output file called spektrafilm.8bf and
+; MSVC reported LNK4070 on every build. Leaving it out makes the linker use the
+; output file name, so the two cannot disagree. (Naming it `spektrafilm.8bf`
+; would work for link.exe but GNU ld rejects the dot in a LIBRARY name, and this
+; file is shared with the mingw validation build.)
+EXPORTS
+    PluginMain

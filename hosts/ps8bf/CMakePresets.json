@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 21, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "mingw64",
+      "displayName": "mingw-w64 cross (Linux -> Windows, validation)",
+      "description": "Cross-compile the .8bf on Linux/CachyOS. Produces a working Windows x64 DLL for ABI/logic testing. Emits compile_commands.json for clangd/CLion/VS Code.",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/mingw64",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/mingw64-toolchain.cmake",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "msvc",
+      "displayName": "MSVC x64 (Windows, shipping, /MT, VS 2026)",
+      "description": "The shipping build. Requires Visual Studio 2026 (Community edition is fine) or Build Tools, and CMake >= 4.2 for the VS 2026 generator. Imports kernel32 + user32 + gdi32 only.",
+      "generator": "Visual Studio 18 2026",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/build/msvc",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    },
+    {
+      "name": "msvc2022",
+      "displayName": "MSVC x64 (Windows, shipping, /MT, VS 2022)",
+      "description": "The shipping build on the older VS 2022 (v143) toolchain, for machines without VS 2026. Same output invariants as the msvc preset.",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/build/msvc2022",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "mingw64", "configurePreset": "mingw64" },
+    { "name": "msvc", "configurePreset": "msvc", "configuration": "Release" },
+    { "name": "msvc2022", "configurePreset": "msvc2022", "configuration": "Release" }
+  ]
+}

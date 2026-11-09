@@ -1,0 +1,19 @@
+# Line endings. Text files are stored with LF in the object database and
+# checked out with LF on every platform: every tracked text file is already
+# LF, so this normalises nothing today, but it stops a Windows clone with
+# core.autocrlf=true from committing CRLF-flipped files back, and eol=lf
+# overrides that setting for this tree on checkout. The vendored Dear ImGui
+# subtree carries its own .gitattributes, which wins inside it; the two
+# submodules are governed by their own repositories - see "Known traps" in
+# docs/BUILDING.md.
+* text=auto eol=lf
+
+# Never treat these as text, whatever the heuristics say.
+*.png binary
+*.ico binary
+*.bin binary
+*.ttf binary
+*.lib binary
+*.dll binary
+*.o binary
+*.obj binary

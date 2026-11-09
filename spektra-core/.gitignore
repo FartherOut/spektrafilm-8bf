@@ -1,0 +1,9 @@
+build/
+spike_out.ppm
+*.o
+# Derived build input, written only by tools/sync_pack.py: the pinned submodule
+# pack plus the archived Hanatos2025 bandpass (a real directory, not a symlink,
+# so it copies cleanly across OSes). The .stamp beside it records what it was
+# derived from. Both are build artifacts — never hand-edit data/pack.
+data/pack/
+data/pack.stamp
